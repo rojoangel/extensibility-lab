@@ -11,7 +11,22 @@
           "dbaeumer.vscode-eslint",
           "ms-vscode.vscode-typescript-next",
           "ms-vscode-remote.remote-containers"
-        ]
+        ],
+        "settings": {
+          "workbench.trustedDomains.trustStore": {
+            "aio-login.adobeioruntime.net": true
+          }
+        }
+      },
+      "codespaces": {
+        "repositories": {
+          "*": {
+            "trusted_domains": [
+              "*.githubpreview.dev",
+              "*.github.dev"
+            ]
+          }
+        }
       }
     }
 }
