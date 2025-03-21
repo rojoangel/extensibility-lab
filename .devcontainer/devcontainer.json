@@ -1,0 +1,18 @@
+{
+    "name": "Workshop Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:latest",
+    "features": {
+      "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "postCreateCommand": "npm install && aio plugins:install",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "ms-vscode.vscode-typescript-next",
+          "ms-vscode-remote.remote-containers"
+        ]
+      }
+    }
+}
+  
