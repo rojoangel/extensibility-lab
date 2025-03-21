@@ -4,7 +4,7 @@
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postCreateCommand": "npm install && aio plugins:install",
+    "postCreateCommand": "npm install && npm install -g @adobe/aio-cli",
     "customizations": {
       "vscode": {
         "extensions": [
@@ -15,4 +15,3 @@
       }
     }
 }
-  
