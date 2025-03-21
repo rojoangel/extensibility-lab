@@ -14,7 +14,7 @@
         ],
         "settings": {
           "workbench.trustedDomains.trustStore": {
-            "aio-login.adobeioruntime.net": true
+            "https://aio-login.adobeioruntime.net": true
           }
         }
       },
