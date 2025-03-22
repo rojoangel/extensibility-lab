@@ -1,0 +1,8 @@
+{
+    "security.workspace.trust.domains": [
+        {
+            "scheme": "https",
+            "domain": "aio-login.adobeioruntime.net"
+        }
+    ]
+} 

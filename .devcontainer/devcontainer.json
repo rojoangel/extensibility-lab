@@ -4,14 +4,28 @@
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postCreateCommand": "npm install && npm install -g @adobe/aio-cli",
+    "postCreateCommand": "npm install -g @adobe/aio-cli",
     "customizations": {
       "vscode": {
         "extensions": [
           "dbaeumer.vscode-eslint",
           "ms-vscode.vscode-typescript-next",
           "ms-vscode-remote.remote-containers"
-        ]
+        ],
+        "settings": {
+          "remote.localPortHost": "allInterfaces",
+          "security.workspace.trust.startupPrompt": "never",
+          "security.workspace.trust.enabled": true,
+          "security.workspace.trust.untrustedFiles": "open",
+          "security.workspace.trust.untrustedActivation": "open"
+        }
       }
-    }
+    },
+    "forwardPorts": [37921],
+    "remoteEnv": {
+      "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+    },
+    "mounts": [
+      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached"
+    ]
 }
