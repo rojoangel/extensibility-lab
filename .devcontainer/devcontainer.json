@@ -37,11 +37,12 @@
       }
     },
     "remoteEnv": {
-      "NODE_TLS_REJECT_UNAUTHORIZED": "0",
-      "AIO_CLI_ENV_TRANSPORT": "http"
+      "AIO_CONFIG_FILE_DISABLE_CONSOLE_KEY_PROMPT": "true",
+      "AIO_CONFIG_FILE": "/home/node/.aio"
     },
     "mounts": [
-      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached"
+      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached",
+      "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aio,target=/home/node/.aio,type=bind,consistency=cached"
     ],
     "postStartCommand": "echo \"When authenticating with 'aio login', use the codespace URL with port 41851 rather than localhost. Example: https://yourcodespace-username.github.dev:41851\""
 }
