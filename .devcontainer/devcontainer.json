@@ -4,7 +4,7 @@
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2 && rm -rf ~/.aio && mkdir -p ~/.aio",
+    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2",
     "customizations": {
       "vscode": {
         "extensions": [
@@ -30,9 +30,7 @@
     },
     "remoteEnv": {
       "NODE_TLS_REJECT_UNAUTHORIZED": "0",
-      "AIO_CLI_ENV_TRANSPORT": "http",
-      "AIO_CONFIG_FILE": "/home/node/.aio",
-      "AIO_CLI_ENV": "prod"
+      "AIO_CONFIG_FILE_DISABLE_CONSOLE_KEY_PROMPT": "true"
     },
     "mounts": [
       "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached"
