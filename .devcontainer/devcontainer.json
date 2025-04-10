@@ -4,7 +4,7 @@
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postCreateCommand": "npm install -g @adobe/aio-cli",
+    "postCreateCommand": "npm install -g @adobe/aio-cli && rm -rf ~/.aio",
     "customizations": {
       "vscode": {
         "extensions": [
@@ -31,11 +31,11 @@
     "remoteEnv": {
       "NODE_TLS_REJECT_UNAUTHORIZED": "0",
       "AIO_CLI_ENV_TRANSPORT": "http",
-      "AIO_CONFIG_FILE": "/home/node/.aio"
+      "AIO_CONFIG_FILE": "/home/node/.aio",
+      "AIO_CLI_ENV": "prod"
     },
     "mounts": [
-      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached",
-      "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aio,target=/home/node/.aio,type=bind,consistency=cached"
+      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached"
     ],
     "postStartCommand": "echo \"When authenticating with 'aio login', the CLI will automatically handle the callback on the correct port. No manual URL modification needed.\""
 }
