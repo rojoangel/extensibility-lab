@@ -21,28 +21,21 @@
         }
       }
     },
-    "forwardPorts": [37921, 41851, 9080, 9229],
+    "forwardPorts": [30000, 30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008, 30009, 35687],
     "portsAttributes": {
-      "37921": {
-        "label": "AIO Auth",
-        "onAutoForward": "notify"
-      },
-      "41851": {
+      "35687": {
         "label": "AIO Auth Callback",
-        "onAutoForward": "notify"
-      },
-      "9080": {
-        "label": "Development Server",
         "onAutoForward": "notify"
       }
     },
     "remoteEnv": {
-      "AIO_CONFIG_FILE_DISABLE_CONSOLE_KEY_PROMPT": "true",
+      "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+      "AIO_CLI_ENV_TRANSPORT": "http",
       "AIO_CONFIG_FILE": "/home/node/.aio"
     },
     "mounts": [
       "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached",
       "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aio,target=/home/node/.aio,type=bind,consistency=cached"
     ],
-    "postStartCommand": "echo \"When authenticating with 'aio login', use the codespace URL with port 41851 rather than localhost. Example: https://yourcodespace-username.github.dev:41851\""
+    "postStartCommand": "echo \"When authenticating with 'aio login', the CLI will automatically handle the callback on the correct port. No manual URL modification needed.\""
 }
