@@ -5,7 +5,7 @@
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "forwardPorts": [9080],
-    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2",
+    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2 && npm install",
     "customizations": {
       "vscode": {
         "extensions": [
@@ -16,6 +16,7 @@
       }
     },
     "mounts": [
-      "source=aio-cli-cache,target=/usr/local/share/npm-global,type=volume"
+      "source=aio-cli-cache,target=/usr/local/share/npm-global,type=volume",
+      "source=node-modules-cache,target=/workspaces/starter-kit-workshop-poc/node_modules,type=volume"
     ]
 }
