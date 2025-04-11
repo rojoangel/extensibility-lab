@@ -1,9 +1,10 @@
 {
     "name": "Workshop Dev Container",
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
+    "forwardPorts": [9080],
     "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2",
     "customizations": {
       "vscode": {
@@ -11,29 +12,7 @@
           "dbaeumer.vscode-eslint",
           "ms-vscode.vscode-typescript-next",
           "ms-vscode-remote.remote-containers"
-        ],
-        "settings": {
-          "remote.localPortHost": "allInterfaces",
-          "security.workspace.trust.startupPrompt": "never",
-          "security.workspace.trust.enabled": true,
-          "security.workspace.trust.untrustedFiles": "open",
-          "security.workspace.trust.untrustedActivation": "open"
-        }
+        ]
       }
-    },
-    "forwardPorts": [30000, 30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008, 30009, 35687],
-    "portsAttributes": {
-      "35687": {
-        "label": "AIO Auth Callback",
-        "onAutoForward": "notify"
-      }
-    },
-    "remoteEnv": {
-      "NODE_TLS_REJECT_UNAUTHORIZED": "0",
-      "AIO_CONFIG_FILE_DISABLE_CONSOLE_KEY_PROMPT": "true"
-    },
-    "mounts": [
-      "source=${localWorkspaceFolder}/.vscode/trust-domains.json,target=/home/node/.vscode-server/data/Machine/settings.json,type=bind,consistency=cached"
-    ],
-    "postStartCommand": "echo \"When authenticating with 'aio login', the CLI will automatically handle the callback on the correct port. No manual URL modification needed.\""
-}
+    }
+  }
