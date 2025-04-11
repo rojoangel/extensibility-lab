@@ -5,10 +5,7 @@
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "forwardPorts": [9080],
-    "postCreateCommand": [
-        "npm install -g @adobe/aio-cli@10.3.2",
-        "npm install"
-    ],
+    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2 && npm install",
     "customizations": {
       "vscode": {
         "extensions": [
