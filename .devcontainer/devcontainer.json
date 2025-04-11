@@ -5,7 +5,7 @@
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "forwardPorts": [9080],
-    "postCreateCommand": "if [ ! -f /usr/local/share/npm-global/.aio-cli-installed ]; then npm install -g @adobe/aio-cli@10.3.2 && touch /usr/local/share/npm-global/.aio-cli-installed; fi",
+    "postCreateCommand": "if [ ! -f /usr/local/share/npm-global/lib/node_modules/.aio-cli-installed ]; then npm install -g @adobe/aio-cli@10.3.2 && touch /usr/local/share/npm-global/lib/node_modules/.aio-cli-installed; fi",
     "customizations": {
       "vscode": {
         "extensions": [
