@@ -5,7 +5,7 @@
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "forwardPorts": [9080],
-    "postCreateCommand": "npm install -g @adobe/aio-cli@10.3.2",
+    "postCreateCommand": "if [ ! -f /home/node/.aio-cli-installed ]; then npm install -g @adobe/aio-cli@10.3.2 && touch /home/node/.aio-cli-installed; fi",
     "customizations": {
       "vscode": {
         "extensions": [
@@ -14,5 +14,8 @@
           "ms-vscode-remote.remote-containers"
         ]
       }
-    }
-  }
+    },
+    "mounts": [
+      "source=aio-cli-cache,target=/home/node/.npm-global,type=volume"
+    ]
+}
