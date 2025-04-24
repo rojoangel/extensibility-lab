@@ -1,21 +1,25 @@
+@hostname = na1-sandbox.api.commerce.adobe.com
+@tenantId = 4cm92NLRmvBw39dJuzErzy
+
+### Get an IMS access token
 # @name accessToken
 POST https://ims-na1.adobelogin.com/ims/token/v3
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=client_credentials&client_id={{$dotenv OAUTH_CLIENT_ID}}&client_secret={{$dotenv OAUTH_CLIENT_SECRET}}&scope=AdobeID,openid,read_organizations,additional_info.projectedProductContext,additional_info.roles,adobeio_api,read_client_secret,manage_client_secrets,event_receiver_api
 
-### Get Starter Kit Info
+### Call local Starter Kit Info
 POST https://localhost:9080/api/v1/web/starter-kit/info
 Authorization: Bearer {{accessToken.response.body.access_token}}
 x-gw-ims-org-id: {{$dotenv OAUTH_ORG_ID}}
 Content-Type: application/json
 
 ### Get Order
-GET https://na1-sandbox.api.commerce.adobe.com/4cm92NLRmvBw39dJuzErzy/V1/orders/8
+GET https://{{hostname}}/{{tenantId}}/V1/orders/8
 Authorization: Bearer {{accessToken.response.body.access_token}}
 
 ### Add Custom Attribute to Order
-POST https://na1-sandbox.api.commerce.adobe.com/4cm92NLRmvBw39dJuzErzy/V1/orders
+POST https://{{hostname}}/{{tenantId}}/V1/orders
 Authorization: Bearer {{accessToken.response.body.access_token}}
 Content-Type: application/json
 
