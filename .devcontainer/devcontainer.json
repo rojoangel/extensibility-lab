@@ -11,7 +11,8 @@
         "extensions": [
           "dbaeumer.vscode-eslint",
           "ms-vscode.vscode-typescript-next",
-          "ms-vscode-remote.remote-containers"
+          "ms-vscode-remote.remote-containers",
+          "humao.rest-client"
         ]
       }
     },
