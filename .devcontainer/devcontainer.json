@@ -1,6 +1,6 @@
 {
     "name": "Workshop Dev Container",
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node",
     "hostRequirements": {
       "cpus": 4,
       "memory": "16gb",
