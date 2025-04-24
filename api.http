@@ -1,0 +1,4 @@
+### Get Starter Kit Info
+POST 127.0.0.0:9080/api/v1/web/starter-kit/info
+Authorization: OAuth2 client_id="{{$processEnv OAUTH_CLIENT_ID}}" client_secret="{{$processEnv OAUTH_CLIENT_SECRET}}" grant_type="client_credentials" scope="adobeio_api,openid,read_client_secret,AdobeID,additional_info.roles,manage_client_secrets,read_organizations,additional_info.projectedProductContext,event_receiver_api"
+x-gw-ims-org-id: {{$processEnv OAUTH_ORG_ID}}
