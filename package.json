@@ -53,7 +53,7 @@
     "commerce-event-subscribe": "node --no-warnings -e 'require(\"./scripts/commerce-event-subscribe/index.js\").main()'",
     "code-check": "npx eslint 'actions/**/*.js' 'scripts/**/*.js' 'test/**/*.js' 'utils/**/*.js'",
     "setupTelemetry": "echo {aio-cli-telemetry: {optOut: false}} > ~/.config/aio",
-    "setup": "yarn setupTelemetry & aio plugins:install @adobe/aio-cli-plugin-api-mesh & aio plugins:install https://github.com/adobe-commerce/aio-cli-plugin-commerce && uset GITHUB_TOKEN",
+    "setup": "yarn setupTelemetry && aio plugins:install @adobe/aio-cli-plugin-api-mesh && aio plugins:install https://github.com/adobe-commerce/aio-cli-plugin-commerce && unset GITHUB_TOKEN",
     "postinstall": "yarn setup"
   },
   "engines": {
