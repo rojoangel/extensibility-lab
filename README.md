@@ -4,7 +4,7 @@
 
 https://github.com/rojoangel/extensibility-lab
 
-## CLI / Scaffolding
+## Codespaces Setup
 
 1. Visit https://github.com/rojoangel/extensibility-lab
 2. Navigate to the top right of the page and click on the `Use this Template` button. Select the `Create a new repository` option to create a new repo with the template. <img width="1701" alt="image" src="https://github.com/user-attachments/assets/63ef2b17-bf03-4e3c-848f-6d990c492261" />
@@ -26,9 +26,55 @@ This should launch the login process. Select the appropriate options to log into
 
 Once done you should see the following on the login screen:
 <img width="1255" alt="image" src="https://github.com/user-attachments/assets/3678bc9c-cd52-4505-8c7b-6514731e1a33" />
-10. Now lets connect the terminal to your assigned Adobe IMS account.
 
-TBD
+10. Now lets connect the terminal to your assigned Adobe IMS account. Run the following command in the terminal:
+```bash
+aio auth login --force
+```
+If you are asked to confirm your action to open an external website, click `Open`.
+<img width="1402" alt="image" src="https://github.com/user-attachments/assets/dcbc0ad7-b1e1-499a-ac95-3edf6fb97a35" />
+
+Enter your email ID in the following format: `pd-sj+<SEAT_NUMBER>@adobeevents.com`. You will find your assigned seat number on your desk.
+
+<img width="1448" alt="image" src="https://github.com/user-attachments/assets/33db1f73-837f-4d6e-a6b1-2ce732638cfd" />
+
+Enter the following as password: `TBD`
+
+<img width="1503" alt="image" src="https://github.com/user-attachments/assets/c7bd6155-dce2-4c4d-8ca4-24881e0a327e" />
+
+Once login is successful, you will see a redirect link, click on it
+
+<img width="919" alt="image" src="https://github.com/user-attachments/assets/ff643d9e-5fdc-4b71-b847-de1b175f113b" />
+
+You will see an error such as this:
+
+<img width="920" alt="image" src="https://github.com/user-attachments/assets/b9f38524-3292-49a3-95dc-cedc89124ed0" />
+
+No worries, make a note of the port number in the address bar, for instance:
+
+<img width="1022" alt="image" src="https://github.com/user-attachments/assets/4e88cc88-47bb-479b-8583-d2954ce43260" />
+
+Go to the ports tab next to the terminal in the Codespaces window
+
+<img width="1663" alt="image" src="https://github.com/user-attachments/assets/4be13b53-12d8-4336-9536-f6252eff8fee" />
+
+Look for an auto-forwarded port with the same port number as earlier from the error window. Once you identify the appropriate forwarded port, copy it.
+
+<img width="1562" alt="image" src="https://github.com/user-attachments/assets/408747c6-0389-4d0f-8749-ae309bcccdc8" />
+
+Navigate back to the error window and replace `127.0.0.1:<PORT_NUMBER>` with the copied text, and click enter. This will connect the IMS login on the browser to the Codespaces terminal.
+
+<img width="936" alt="image" src="https://github.com/user-attachments/assets/019f8f26-2be2-41e8-b6b1-279e4e20dba2" />
+
+## Create Storefront
+
+Congratulations on creating a codespace and completing the pre-requisite steps. Now comes the fun part, lets create a storefront and connect it to a Commerce instance using API Mesh.
+
+1. Run the commerce scaffolder CLI
+```bash
+aio commerce init
+```
+2. 
 
 ## Storefront Extensibility (Phase 1)
 
