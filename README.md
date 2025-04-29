@@ -8,7 +8,7 @@ https://github.com/rojoangel/extensibility-lab
 
 1. Visit https://github.com/rojoangel/extensibility-lab
 2. Navigate to the top right of the page and click on the `Use this Template` button. Select the `Create a new repository` option to create a new repo with the template. <img width="1701" alt="image" src="https://github.com/user-attachments/assets/63ef2b17-bf03-4e3c-848f-6d990c492261" />
-3. This should launch the repo provisioning UI. Select your personal account as the owner and enter an appropriate name for the repo. Make the repo `Private` and click on `Create Repository` to create create a repo from the template. <img width="881" alt="image" src="https://github.com/user-attachments/assets/aabc8b22-1ba3-4058-af6b-2f70ec505d0c" />
+3. This should launch the repo provisioning UI. Select your personal account as the owner and enter an appropriate name for the repo. Make the repo `Private` and click on `Create Repository` to create a repo from the template. <img width="881" alt="image" src="https://github.com/user-attachments/assets/aabc8b22-1ba3-4058-af6b-2f70ec505d0c" />
 4. Congratulations, you now have the tools to create and extend your own commerce store.
 5. Click on the `Code` icon and select the `Codespaces` tab. Click on the `+` icon to create a new personal codespace. <img width="1497" alt="image" src="https://github.com/user-attachments/assets/d060f11e-197f-44c6-9f68-2274c2ba22d6" />
 6. This will launch a new codespace on the repo. The initialization will take around 3-4 minutes. <img width="731" alt="image" src="https://github.com/user-attachments/assets/d4e18627-2fed-47b5-b8cc-ea3b0b2743f7" />
@@ -22,9 +22,11 @@ unset GITHUB_TOKEN
 gh auth login
 ```
 This should launch the login process. Select the appropriate options to log into your Github account.
+
 <img width="686" alt="image" src="https://github.com/user-attachments/assets/d15dc8ba-febe-461d-9117-4ba16026e7ed" />
 
 Once done you should see the following on the login screen:
+
 <img width="1255" alt="image" src="https://github.com/user-attachments/assets/3678bc9c-cd52-4505-8c7b-6514731e1a33" />
 
 10. Now lets connect the terminal to your assigned Adobe IMS account. Run the following command in the terminal:
@@ -74,7 +76,19 @@ Congratulations on creating a codespace and completing the pre-requisite steps. 
 ```bash
 aio commerce init
 ```
-2. 
+2. Make sure the CLI has selected the right github account. If so, Enter `y`.
+3. Enter a name that will be used as the name the storefront repo. Make sure it isnt used in the past.
+4. Select the first template in the list `adobe-commerce/adobe-demo-store`
+5. Select the second option, which will allow us to select an assigned instance `Pick an available Adobe Commerce tenant`
+6. This will prompt us to select the Org. Select the following org `TBD` and enter
+7. From the list of instances, select the instance assigned to you. You can search for your instance by typing `Cloud Service <SEAT_NUMBER>`
+8. From the list of projects, select the project assigned to you. You can search for your project by typing `TBD`
+9. Select the Production workspace
+10. This will connect the selected instance through an API Mesh on the selected Project and Workspace
+11. In the next step if a browser tab isnt opened, go to this link https://github.com/apps/aem-code-sync/installations/select_target
+12. Select the appropriate account to install the AEM Sync Bot and complete the login process if any
+13. Select the option to only install on selected repositories. Enter the name of the repo from 2nd question in the dropdown and click save.
+14. TBD
 
 ## Storefront Extensibility (Phase 1)
 
