@@ -1,11 +1,16 @@
 {
     "name": "Workshop Dev Container",
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node",
+    "hostRequirements": {
+      "cpus": 4,
+      "memory": "16gb",
+      "storage": "32gb"
+    },
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "forwardPorts": [9080],
-    "postCreateCommand": "npm install -g @adobe/aio-cli@latest && npm install",
+    "postCreateCommand": "yarn global add @adobe/aio-cli@latest && yarn install",
     "customizations": {
       "vscode": {
         "extensions": [
