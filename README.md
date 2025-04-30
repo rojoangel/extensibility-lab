@@ -131,7 +131,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
     Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page. Save it as `workspace.json` at `extensibility-lab/scripts/onboarding/config/workspace.json`
 
 1.  Copy the `env.dist` file in `extensibility-lab` as `.env` 
-    ```
+    ```bash
     cp env.dist .env
     ```
 
@@ -141,13 +141,13 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
         ![Alt text](docs/oauth-credential.png "OAuth Server-to-Server Credential")
 
-    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. Note that the value should end with `/`.
+    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. The endpoint should be in the following format: `https://na1-sandbox.api.commerce.adobe.com/<TENANT_ID>/`
 
     - Fill in the `IO_CONSUMER_ID`, `IO_PROJECT_ID`, and values `IO_WORKSPACE_ID` using the downloaded `workspace.json` file and the commented instructions in the `.env` file.
 
 1.	Link the project in the current directory to the project in the Adobe Developer Console by running the following commands in the terminal:
 
-    ```
+    ```bash
     # force logout 
     aio logout --force
 
@@ -169,7 +169,8 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
 1. Install and deploy the application:
 
-    ```
+    ```bash
+    npm install
     aio app deploy
     ```
 
@@ -208,8 +209,7 @@ To ensure flexibility for the onboarding scripts, the starter kit code provides 
   Defines the event names and fields that must be subscribed to in Adobe Commerce. Information for the `com.adobe.commerce.observer.sales._order_save_commit_after` that will be used in this lab is provided in this file.
 
 Now it's time to realize the onboarding. Go to your terminal and run the following commands:
-```
-npm run build
+```bash
 npm run onboard
 ```
 
@@ -220,7 +220,7 @@ After successfully running this command, an event registration within your Stage
 ![Alt text](docs/registration-details.png "Event registration details")
 
 Then, to automatically subscribe to the order save Commerce event, go to your terminal and run
-```
+```bash
 npm run commerce-event-subscribe
 ```
 
