@@ -207,8 +207,9 @@ To ensure flexibility for the onboarding scripts, the starter kit code provides 
 
   Defines the event names and fields that must be subscribed to in Adobe Commerce. Information for the `com.adobe.commerce.observer.sales._order_save_commit_after` that will be used in this lab is provided in this file.
 
-Now it's time to realize the onboarding. Go to your terminal and run
+Now it's time to realize the onboarding. Go to your terminal and run the following commands:
 ```
+npm run build
 npm run onboard
 ```
 
