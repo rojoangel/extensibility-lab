@@ -30,10 +30,14 @@ async function getAdobeAccessToken (params) {
     scopes: ioManagementAPIScopes
   }
 
+  console.log(config);
+
   await context.setCurrent('onboarding-config')
   await context.set('onboarding-config', config)
 
-  return await getToken()
+  const token = await getToken()
+  console.log(token);
+  return token
 }
 
 module.exports = {

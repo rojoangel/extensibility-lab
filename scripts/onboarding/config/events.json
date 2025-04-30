@@ -1,87 +1,33 @@
 {
-  "customer": {
+  "order": {
     "commerce": {
-      "com.adobe.commerce.observer.customer_save_commit_after": {
+      "com.adobe.commerce.observer.sales_order_save_commit_after": {
         "sampleEventTemplate": {
           "value": {
-            "id": 123,
-            "firstname": "John",
-            "lastname": "Doe",
-            "email": "john.doe@fakedomain.com",
-            "created_at": "2024-06-12 16:31:43",
-            "updated_at": "2024-08-05 10:03:49"
-          }
-        }
-      },
-      "com.adobe.commerce.observer.customer_delete_commit_after": {
-        "sampleEventTemplate": {
-          "value": {
-            "id": 123,
-            "firstname": "John",
-            "lastname": "Doe",
-            "email": "john.doe@fakedomain.com"
-          }
-        }
-      },
-      "com.adobe.commerce.observer.customer_group_save_commit_after": {
-        "sampleEventTemplate": {
-          "value": {
-            "customer_group_code": "VIP",
-            "tax_class_id": 3,
-            "extension_attributes": {
-              "exclude_website_ids": []
-            },
-            "customer_group_id": "18"
-          }
-        }
-      },
-      "com.adobe.commerce.observer.customer_group_delete_commit_after": {
-        "sampleEventTemplate": {
-          "value": {
-            "customer_group_code": "VIP",
-            "customer_group_id": "18",
-            "tax_class_id": "3"
+            "entity_id": "12",
+            "increment_id": "000000012",
+            "status": "pending",
+            "total_item_count": 1,
+            "grand_total": 100,
+            "created_at": "2024-08-05 14:34:19",
+            "updated_at": "2024-08-05 14:34:19",
+            "items": [
+              {
+                "item_id": 12,
+                "sku": "SKU-1",
+                "qty_ordered": 1
+              }
+            ]
           }
         }
       }
     },
     "backoffice": {
-      "be-observer.customer_create": {
+      "be-observer.sales_order_shipment_create": {
         "sampleEventTemplate": {
-          "name": "Jane",
-          "lastname": "Doe",
-          "email": "jane.doe@fakedomain.com"
-        }
-      },
-      "be-observer.customer_update": {
-        "sampleEventTemplate": {
-          "id": 15,
-          "name": "Jane",
-          "lastname": "Doe",
-          "email": "jane.doe@fakedomain.com"
-        }
-      },
-      "be-observer.customer_delete": {
-        "sampleEventTemplate": {
-          "id": 15
-        }
-      },
-      "be-observer.customer_group_create": {
-        "sampleEventTemplate": {
-          "name": "Backoffice Group",
-          "taxClassId": 3
-        }
-      },
-      "be-observer.customer_group_update": {
-        "sampleEventTemplate": {
-          "id": 19,
-          "name": "Backoffice Group",
-          "taxClassId": 2
-        }
-      },
-      "be-observer.customer_group_delete": {
-        "sampleEventTemplate": {
-          "id": 19
+          "id": 8,
+          "orderId": 8,
+          "trackNum": "track#234"
         }
       }
     }

@@ -55,7 +55,7 @@ async function main (clientRegistrations, providers, environment, accessToken) {
         const createEventRegistrationResult = await createRequestRegistration(accessToken, entityName, provider.key, events, environment)
         if (!createEventRegistrationResult.success) {
           const errorMessage = `Unable to create registration for ${entityName} with provider ${provider.key} - ${provider.id}`
-          console.log(errorMessage)
+          console.log(errorMessage, createEventRegistrationResult)
           console.log(`Reason: ${createEventRegistrationResult.error.reason}, message: ${createEventRegistrationResult.error.message}`)
           return {
             code: 500,

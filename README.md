@@ -106,6 +106,133 @@ aio commerce init
 1. Update Storefront to use build.mjs to modify pdp schema
 1. Use this data somehow, ie via slot context, and remove runtime fetch
 
+## Adobe Commerce Integration Starter Kit (Phase 4)
+
+The purpose of this exercise is to demonstrate sending events from Commerce to Adobe Developer App Builder. You will use a simplified version of the Adobe Commerce Integration Starter Kit to configure Commerce and an App Builder project, allowing for the sending of events about saved orders.
+
+### 1. Configure the Starter Kit
+
+1. Login to the Adobe Developer Console at https://developer.adobe.com/console/ and select the **Commerce Extensibility Lab** organization. 
+    
+    Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem, including App Builder. 
+
+    Use the username format:
+    
+    **pd+sj+\<SEAT_NUMBER\>@adobeevents.com**
+
+1. Select the project assigned to your seat: 
+
+    **Cloud Service <SEAT_NUMBER>**
+
+    *Tip: Use search to find your project*
+
+    Select the **Stage** workspace.
+
+    Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page. Save it as `workspace.json` at `extensibility-lab/scripts/onboarding/config/workspace.json`
+
+1.  Copy the `env.dist` file in `extensibility-lab` as `.env` 
+    ```
+    cp env.dist .env
+    ```
+
+    Then configure the `.env` file with all the information required:
+
+    - To find the values for the OAuth config variables, click **OAuth Server-to-Server** in the Developer Console Workspace overview page for the Stage workspace.
+
+        ![Alt text](docs/oauth-credential.png "OAuth Server-to-Server Credential")
+
+    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. Note that the value should end with `/`.
+
+    - Fill in the `IO_CONSUMER_ID`, `IO_PROJECT_ID`, and values `IO_WORKSPACE_ID` using the downloaded `workspace.json` file and the commented instructions in the `.env` file.
+
+1.	Link the project in the current directory to the project in the Adobe Developer Console by running the following commands in the terminal:
+
+    ```
+    # force logout 
+    aio logout --force
+
+    # login to Adobe I/O CLI
+    aio login
+
+    # configure Adobe I/O CLI to use the Commerce Extensibility Lab organization
+    aio console org select
+
+    # configure Adobe I/O CLI to use the project assigned to your seat
+    aio console project select
+
+    # configure Adobe I/O CLI to use the Stage workspace
+    aio console workspace select
+
+    # configure Adobe I/O CLI to use the previous selections for the current project
+    aio app use --merge
+    ```
+
+1. Install and deploy the application:
+
+    ```
+    aio app deploy
+    ```
+
+    Take note of the link to the deployed application in the Experience Cloud shell. This will be used later in the lab.
+
+    ![Alt text](docs/deployed-app-url.png "Application's Experience Cloud shell URL")
+
+    After running the command and clicking the **Runtime** tab in the Developer Console for your Stage workspace, runtime actions are visible.
+
+    ![Alt text](docs/dev-console-actions.png "Runtime actions in the Developer Console")
+
+### 2. Onboarding
+
+The starter kit provides boilerplate code for synchronizing entities across systems and onboarding scripts to simplify setup. During installation, there are low/no manual activities required.
+
+To ensure flexibility for the onboarding scripts, the starter kit code provides a few different JSON configuration files to match your business requirements. All the files were pre-configured for this lab. The most important files are described below:
+
+- `scripts/onboarding/config/providers.json`
+
+  Defines the providers required during the integration. The "key" field will reference the providers in other configuration files. The rest of the fields are descriptive.
+
+  For this specific lab, we will focus on creating a Commerce provider for sending events to App Builder. Although not used for this specific lab, the starter kit also supports creation of backoffice providers for sending information from backoffice systems to Commerce.
+
+- `scripts/onboarding/config/events.json`
+
+  Defines all the meaningful events that the integration needs to care about. For this lab, we'll focus on the `com.adobe.commerce.observer.sales._order_save_commit_after` event listed at the beginning of this file.
+  
+  If more events were required, we would specify them in this file. Although not used for this lab, the full starter kit also provides support for product, customer, and stock events.
+
+- `scripts/onboarding/config/starter-kit-registrations.json`
+
+  Defines the required event registrations that will be created in App Builder. For this lab, the file has been configured so that only a registration for order events from Commerce will be created. When the registration is created, order save Commerce events will trigger runtime action code that we've added in the `actions/order/commerce` directory to save order data within the App Builder app.
+
+- `scripts/commerce-event-subscribe/config/commerce-event-subscribe.json`
+
+  Defines the event names and fields that must be subscribed to in Adobe Commerce. Information for the `com.adobe.commerce.observer.sales._order_save_commit_after` that will be used in this lab is provided in this file.
+
+Now it's time to realize the onboarding. Go to your terminal and run
+```
+npm run onboard
+```
+
+After successfully running this command, an event registration within your Stage workspace will be visible in the Developer Console.
+
+![Alt text](docs/workspace-overview-registration.png "Workspace overview with event registration")
+
+![Alt text](docs/registration-details.png "Event registration details")
+
+Then, to automatically subscribe to the order save Commerce event, go to your terminal and run
+```
+npm run commerce-event-subscribe
+```
+
+### 3. Send information from Adobe Commerce to App Builder
+
+Navigate to the link for the deployed application in the Experience Cloud shell that was included in the console output after running the `aio app deploy` command. The application contains a single page UI with a panel labeled **Latest Orders Received**. The panel is initially empty, but a grid with information about saved orders will appear after Commerce order save events are received and saved by the App Builder app's runtime action. The grid refreshes at regular intervals, allowing for the display of new order information.
+
+In the storefront for your Commerce instance, place at least one order. After Commerce order save events are received in App Builder, the panel in the app's UI will look similar to the following:
+
+![Alt text](docs/order-grid-ui.png "Application UI Order Grid")
+
+This demo App Builder app simply stores and displays received order information, but the action code for the app could also be modified to send information received from Commerce to a third-party back office system. Although not shown in this demonstration, the starter kit can additionally be used in setting up the synchronization of data from third-party back office systems to Commerce.
+
 # Commerce Partner Days - ACO Session
 
 TBD

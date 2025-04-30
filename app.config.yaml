@@ -1,6 +1,5 @@
 application:
-#  hooks:
-#    post-app-deploy: ./hooks/post-app-deploy.js
+  actions: actions
   runtimeManifest:
     packages:
       starter-kit:
@@ -16,22 +15,22 @@ application:
             annotations:
               require-adobe-auth: true
               final: true
-      #  ingestion:
-      #    license: Apache-2.0
-      #    actions:
-      #      $include: ./actions/ingestion/actions.config.yaml
       webhook:
         license: Apache-2.0
         actions:
           $include: ./actions/webhook/actions.config.yaml
-      customer-commerce:
+      order-commerce:
         license: Apache-2.0
         actions:
-          $include: ./actions/customer/commerce/actions.config.yaml
-      customer-backoffice:
+          $include: ./actions/order/commerce/actions.config.yaml
+      # order-backoffice:
+      #   license: Apache-2.0
+      #   actions:
+      #     $include: ./actions/order/external/actions.config.yaml
+      spa:
         license: Apache-2.0
         actions:
-          $include: ./actions/customer/external/actions.config.yaml
+          $include: ./actions/spa/actions.config.yaml
 productDependencies:
   - code: COMMC
     minVersion: 2.4.4

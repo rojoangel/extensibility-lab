@@ -108,7 +108,26 @@ function checkMissingRequestInputs (
   return errorMessage
 }
 
+/**
+ *
+ * Extracts the bearer token string from the Authorization header in the request parameters.
+ *
+ * @param {object} params action input parameters.
+ *
+ * @returns {string|undefined} the token string or undefined if not set in request headers.
+ *
+ */
+function getBearerToken (params) {
+  if (params.__ow_headers &&
+      params.__ow_headers.authorization &&
+      params.__ow_headers.authorization.startsWith('Bearer ')) {
+    return params.__ow_headers.authorization.substring('Bearer '.length)
+  }
+  return undefined
+}
+
 module.exports = {
   stringParameters,
-  checkMissingRequestInputs
+  checkMissingRequestInputs,
+  getBearerToken
 }
