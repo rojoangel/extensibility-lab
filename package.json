@@ -61,10 +61,16 @@
     "commerce-event-subscribe": "node --no-warnings -e 'require(\"./scripts/commerce-event-subscribe/index.js\").main()'",
     "code-check": "npx eslint 'actions/**/*.js' 'scripts/**/*.js' 'test/**/*.js' 'utils/**/*.js'",
     "build": "npm run build --workspaces",
-    "clean": "rimraf ./packages/*/dist-* ./packages/*/*.tsbuildinfo"
+    "clean": "rimraf ./packages/*/dist-* ./packages/*/*.tsbuildinfo",
+    "setupTelemetry": "echo {aio-cli-telemetry: {optOut: false}} > ~/.config/aio",
+    "install:mesh": "aio plugins:install @adobe/aio-cli-plugin-api-mesh",
+    "install:commerce": "aio plugins:install https://github.com/adobe-commerce/aio-cli-plugin-commerce",
+    "gh:logout": "unset GITHUB_TOKEN",
+    "setup": "yarn setupTelemetry && yarn install:mesh && yarn install:commerce && yarn gh:logout",
+    "postinstall": "yarn setup"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "aio-app-builder-templates": [
     "@adobe/generator-app-events-generic",
