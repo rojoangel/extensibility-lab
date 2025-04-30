@@ -101,7 +101,10 @@ aio commerce init
 11. In the next step if a browser tab isnt opened, go to this link https://github.com/apps/aem-code-sync/installations/select_target
 12. Select the appropriate account to install the AEM Sync Bot and complete the login process if any
 13. Select the option to only install on selected repositories. Enter the name of the repo from 2nd question in the dropdown and click save.
-14. TBD
+14. Go back to the terminal and click enter to move forward. At this point, the CLI will validate the code sync and continue with content cloning. This will take a minute or 2.
+15. Congratulations, you have created your own Storefront. Copy the final details and save it for future reference.
+
+![image](https://github.com/user-attachments/assets/83295575-7558-40f3-a278-aa2412096e29)
 
 ## Storefront Extensibility (Phase 1)
 
