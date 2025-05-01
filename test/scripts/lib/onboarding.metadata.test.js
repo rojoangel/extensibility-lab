@@ -68,11 +68,11 @@ describe('Given on-boarding metadata file', () => {
         code: 200,
         success: true,
         result: [{
-          entity: 'product',
+          entity: 'order',
           label: 'Commerce Provider'
         },
         {
-          entity: 'product',
+          entity: 'order',
           label: 'Backoffice Provider'
         }
         ]
@@ -108,7 +108,7 @@ describe('Given on-boarding metadata file', () => {
         success: true,
         result: [
           {
-            entity: 'product',
+            entity: 'order',
             label: 'Commerce Provider'
           }
         ]
@@ -144,7 +144,7 @@ describe('Given on-boarding metadata file', () => {
         success: true,
         result: [
           {
-            entity: 'product',
+            entity: 'order',
             label: 'Backoffice Provider'
           }
         ]

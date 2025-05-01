@@ -74,7 +74,7 @@ describe('Given order external shipment created action', () => {
         }
       }
       validateData.mockReturnValue(SUCCESSFUL_VALIDATION_RESPONSE)
-      mockStateInstance.get.mockImplementation(() => {return '{}'})
+      mockStateInstance.get.mockImplementation(() => {return {value: '{}'}})
       expect(await action.main(PARAMS)).toMatchObject(ERROR_RESPONSE)
     })
   })
@@ -93,7 +93,7 @@ describe('Given order external shipment created action', () => {
         }
       }
       validateData.mockReturnValue(SUCCESSFUL_VALIDATION_RESPONSE)
-      mockStateInstance.get.mockImplementation(() => {return '{"items": [{"item_id": 1}]}'})
+      mockStateInstance.get.mockImplementation(() => {return {value: '{"items": [{"item_id": 1}]}'}})
       sendData.mockRejectedValue(ERROR)
       expect(await action.main(IGNORED_PARAMS)).toMatchObject(ERROR_RESPONSE)
     })
@@ -118,7 +118,7 @@ describe('Given order external shipment created action', () => {
       }
       validateData.mockReturnValue(SUCCESSFUL_VALIDATION_RESPONSE)
       transformData.mockReturnValue(TRANSFORMED_DATA)
-      mockStateInstance.get.mockImplementation(() => {return '{"items": [{"item_id": 1, "qty_ordered": 1}]}'})
+      mockStateInstance.get.mockImplementation(() => {return {value: '{"items": [{"item_id": 1, "qty_ordered": 1}]}'}})
       sendData.mockReturnValue(SUCCESSFUL_SEND_DATA_RESPONSE)
       expect(await action.main(PARAMS)).toMatchObject(SUCCESS_RESPONSE)
       expect(transformData).toHaveBeenCalledWith({

@@ -44,12 +44,12 @@ describe('Given on-boarding registrations file', () => {
   })
   describe('When create all registration configured', () => {
     test('Then returns success response', async () => {
-      const mockFetchCreateProductCommerceRegistrationResponse = {
+      const mockFetchCreateOrderCommerceRegistrationResponse = {
         ok: true,
         json: () => Promise.resolve(
           {
             id: 1,
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             description: 'string',
             client_id: 'CLIENT_ID',
             registration_id: 'REGISTRATION_ID_1',
@@ -208,12 +208,12 @@ describe('Given on-boarding registrations file', () => {
           }
         )
       }
-      const mockFetchCreateProductBackofficeRegistrationResponse = {
+      const mockFetchCreateOrderBackofficeRegistrationResponse = {
         ok: true,
         json: () => Promise.resolve(
           {
             id: 2,
-            name: 'Backoffice Product Sync',
+            name: 'Backoffice Order Sync',
             description: 'string',
             client_id: 'CLIENT_ID',
             registration_id: 'REGISTRATION_ID_2',
@@ -244,8 +244,8 @@ describe('Given on-boarding registrations file', () => {
         )
       }
       fetch.mockResolvedValueOnce(mockFetchExistingRegistrationResponse)
-        .mockResolvedValueOnce(mockFetchCreateProductCommerceRegistrationResponse)
-        .mockResolvedValueOnce(mockFetchCreateProductBackofficeRegistrationResponse)
+        .mockResolvedValueOnce(mockFetchCreateOrderCommerceRegistrationResponse)
+        .mockResolvedValueOnce(mockFetchCreateOrderBackofficeRegistrationResponse)
 
       const clientRegistrations = require('../../data/onboarding/registrations/create_commerce_and_backoffice_registrations.json')
 
@@ -258,13 +258,13 @@ describe('Given on-boarding registrations file', () => {
           {
             id: 1,
             registration_id: 'REGISTRATION_ID_1',
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             enabled: true
           },
           {
             id: 2,
             registration_id: 'REGISTRATION_ID_2',
-            name: 'Backoffice Product Sync',
+            name: 'Backoffice Order Sync',
             enabled: true
           }
         ]
@@ -402,12 +402,12 @@ describe('Given on-boarding registrations file', () => {
           }
         )
       }
-      const mockFetchCreateProductCommerceRegistrationResponse = {
+      const mockFetchCreateOrderCommerceRegistrationResponse = {
         ok: true,
         json: () => Promise.resolve(
           {
             id: 1,
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             description: 'string',
             client_id: 'CLIENT_ID',
             registration_id: 'REGISTRATION_ID_1',
@@ -438,7 +438,7 @@ describe('Given on-boarding registrations file', () => {
         )
       }
       fetch.mockResolvedValueOnce(mockFetchExistingRegistrationResponse)
-        .mockResolvedValueOnce(mockFetchCreateProductCommerceRegistrationResponse)
+        .mockResolvedValueOnce(mockFetchCreateOrderCommerceRegistrationResponse)
 
       const clientRegistrations = require('../../data/onboarding/registrations/create_only_commerce_registrations.json')
 
@@ -451,7 +451,7 @@ describe('Given on-boarding registrations file', () => {
           {
             id: 1,
             registration_id: 'REGISTRATION_ID_1',
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             enabled: true
           }
         ]
@@ -589,12 +589,12 @@ describe('Given on-boarding registrations file', () => {
           }
         )
       }
-      const mockFetchCreateProductBackofficeRegistrationResponse = {
+      const mockFetchCreateOrderBackofficeRegistrationResponse = {
         ok: true,
         json: () => Promise.resolve(
           {
             id: 2,
-            name: 'Backoffice Product Sync',
+            name: 'Backoffice Order Sync',
             description: 'string',
             client_id: 'CLIENT_ID',
             registration_id: 'REGISTRATION_ID_2',
@@ -625,7 +625,7 @@ describe('Given on-boarding registrations file', () => {
         )
       }
       fetch.mockResolvedValueOnce(mockFetchExistingRegistrationResponse)
-        .mockResolvedValueOnce(mockFetchCreateProductBackofficeRegistrationResponse)
+        .mockResolvedValueOnce(mockFetchCreateOrderBackofficeRegistrationResponse)
 
       const clientRegistrations = require('../../data/onboarding/registrations/create_only_backoffice_registrations.json')
 
@@ -638,7 +638,7 @@ describe('Given on-boarding registrations file', () => {
           {
             id: 2,
             registration_id: 'REGISTRATION_ID_2',
-            name: 'Backoffice Product Sync',
+            name: 'Backoffice Order Sync',
             enabled: true
           }
         ]
@@ -708,7 +708,7 @@ describe('Given on-boarding registrations file', () => {
               registrations: [
                 {
                   id: 2,
-                  name: 'Backoffice Product Sync',
+                  name: 'Backoffice Order Sync',
                   description: 'string',
                   client_id: 'string',
                   registration_id: 'EXISTING_BACKOFFICE_ID',
@@ -776,12 +776,12 @@ describe('Given on-boarding registrations file', () => {
           }
         )
       }
-      const mockFetchCreateProductBackofficeRegistrationResponse = {
+      const mockFetchCreateOrderBackofficeRegistrationResponse = {
         ok: true,
         json: () => Promise.resolve(
           {
             id: 1,
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             description: 'string',
             client_id: 'CLIENT_ID',
             registration_id: 'CREATED_REGISTRATION_ID',
@@ -812,7 +812,7 @@ describe('Given on-boarding registrations file', () => {
         )
       }
       fetch.mockResolvedValueOnce(mockFetchExistingRegistrationResponse)
-        .mockResolvedValueOnce(mockFetchCreateProductBackofficeRegistrationResponse)
+        .mockResolvedValueOnce(mockFetchCreateOrderBackofficeRegistrationResponse)
 
       const clientRegistrations = require('../../data/onboarding/registrations/create_commerce_and_backoffice_registrations.json')
 
@@ -825,13 +825,13 @@ describe('Given on-boarding registrations file', () => {
           {
             id: 1,
             registration_id: 'CREATED_REGISTRATION_ID',
-            name: 'Commerce Product Sync',
+            name: 'Commerce Order Sync',
             enabled: true
           },
           {
             id: 2,
             registration_id: 'EXISTING_BACKOFFICE_ID',
-            name: 'Backoffice Product Sync',
+            name: 'Backoffice Order Sync',
             enabled: true
           }
         ]
@@ -869,7 +869,7 @@ describe('Given on-boarding registrations file', () => {
       expect(response).toEqual({
         code: 500,
         success: false,
-        error: 'Unable to create registration for product with provider commerce - COMMERCE_PROVIDER_ID'
+        error: 'Unable to create registration for order with provider commerce - COMMERCE_PROVIDER_ID'
       })
     })
   })

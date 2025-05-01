@@ -128,7 +128,11 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
     Select the **Stage** workspace.
 
-    Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page. Save it as `workspace.json` at `extensibility-lab/scripts/onboarding/config/workspace.json`
+    Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page.
+    
+    ![Alt text](docs/download-workspace.png "Download all button")
+    
+    Save it as `workspace.json` in the `extensibility-lab/scripts/onboarding/config` directory.
 
 1.  Copy the `env.dist` file in `extensibility-lab` as `.env` 
     ```bash

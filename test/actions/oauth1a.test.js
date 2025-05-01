@@ -43,9 +43,9 @@ describe('getClient', () => {
         }
       }
     })
-        .matchHeader('accept', 'application/json')
-        .get('/rest/V1/foo')
-        .reply(200, { success: true })
+      .matchHeader('accept', 'application/json')
+      .get('/V1/foo')
+      .reply(200, { success: true })
     expect(await client.get('foo', '')).toStrictEqual({
       success: true
     })
@@ -63,13 +63,13 @@ describe('getClient', () => {
     }, console)
 
     const imsScope = nock('https://ims-na1.adobelogin.com', {})
-        .post('/ims/token/v3')
-        .reply(200, {
-          access_token: 'TOKEN',
-          token_type: 'Bearer',
-          expires_in: 86000,
-          expires_at: 999999999
-        })
+      .post('/ims/token/v3')
+      .reply(200, {
+        access_token: 'TOKEN',
+        token_type: 'Bearer',
+        expires_in: 86000,
+        expires_at: 999999999
+      })
 
     const scope = nock('http://commerce.adobe.io', {
       reqheaders: {
@@ -78,9 +78,9 @@ describe('getClient', () => {
         }
       }
     })
-        .matchHeader('accept', 'application/json')
-        .get('/rest/V1/foo')
-        .reply(200, { success: true })
+      .matchHeader('accept', 'application/json')
+      .get('/V1/foo')
+      .reply(200, { success: true })
 
     const result = await client.get('foo', '')
     expect(result).toStrictEqual({
