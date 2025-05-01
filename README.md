@@ -122,7 +122,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
 1. Select the project assigned to your seat: 
 
-    **Cloud Service <SEAT_NUMBER>**
+    **L442 Seat <SEAT_NUMBER>**
 
     *Tip: Use search to find your project*
 
@@ -148,13 +148,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 1.	Link the project in the current directory to the project in the Adobe Developer Console by running the following commands in the terminal:
 
     ```bash
-    # force logout 
-    aio logout --force
-
-    # login to Adobe I/O CLI
-    aio login
-
-    # configure Adobe I/O CLI to use the Commerce Extensibility Lab organization
+    # configure Adobe I/O CLI to use the Adobe Commerce Labs organization
     aio console org select
 
     # configure Adobe I/O CLI to use the project assigned to your seat

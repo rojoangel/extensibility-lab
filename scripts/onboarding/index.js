@@ -88,7 +88,6 @@ async function main () {
       }
     }
   } catch (error) {
-    console.log(error)
     if (error?.code === 'MODULE_NOT_FOUND') {
       console.log('The configuration process of the Adobe I/O Events module failed with error: "workspace.json" file not found. Make sure the file exists in the "scripts/onboarding/config/workspace.json" directory (see https://developer.adobe.com/commerce/extensibility/events/project-setup/#download-the-workspace-configuration-file for instructions on how to download the file. Also, make sure the file is named "workspace.json")')
       return {
