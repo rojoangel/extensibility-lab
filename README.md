@@ -117,7 +117,7 @@ aio commerce init
 
 Lets stitch Commerce backend and Ratings API using API Mesh. In this section we will create a new `ratings` field on the Products query and implement it using the Ratings API.
 
-Here is the sample Ratings API to use with the mesh: `https://ratings-api.apimesh-adobe-test.workers.dev/<SKU>`
+Here is the sample Ratings API to use with the mesh: `https://ratings-api.apimesh-adobe-test.workers.dev`
 
 Lets add the new Ratings API to the Mesh. Open the `mesh_config.json` and add the following config under the sources array.
 
@@ -173,7 +173,6 @@ module.exports = {
             selectionSet: "{average, total}",
           })
             .then((response) => {
-              context.logger.log("rating", response);
               return response;
             })
             .catch(() => {
@@ -196,6 +195,12 @@ Finally, lets deploy the mesh config to publish the new changes:
 
 ```bash
 aio api-mesh update mesh_config.json
+```
+
+This operation typically takes 30 seconds to a minute. To check the status of the update, run the following command:
+
+```bash
+aio api-mesh status
 ```
 
 ## Storefront Extensibility (Phase 3)
