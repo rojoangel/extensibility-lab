@@ -115,7 +115,88 @@ aio commerce init
 
 ## Mesh Extensibility (Phase 2)
 
-1. Add mock service as products.ratings schema
+Lets stitch Commerce backend and Ratings API using API Mesh. In this section we will create a new `ratings` field on the Products query and implement it using the Ratings API.
+
+Here is the sample Ratings API to use with the mesh: `https://ratings-api.apimesh-adobe-test.workers.dev/<SKU>`
+
+Lets add the new Ratings API to the Mesh. Open the `mesh_config.json` and add the following config under the sources array.
+
+```json
+{
+  "name": "Ratings",
+  "handler": {
+    "JsonSchema": {
+      "baseUrl": "https://ratings-api.apimesh-adobe-test.workers.dev",
+      "operations": [
+        {
+          "type": "Query",
+          "field": "ratings",
+          "path": "/",
+          "method": "GET",
+          "responseSample": "./sampleRatings.json"
+        }
+      ]
+    }
+  }
+}
+```
+
+The above config references a file called `sampleRatings.json`. Lets create this file with the following contents:
+
+```json
+{
+  "average": 2,
+  "total": 807
+}
+```
+
+At this point we have added the Ratings source to the mesh. Now lets create the `ratings` field on the `products` query. Create a new file called `additionalTypeDefs.graphql` with the following contents:
+
+```graphql
+type Rating {
+  average: Int
+  total: Int
+}
+extend type SimpleProductView {
+  rating: Rating
+}
+```
+
+The above code defined a new type called `Rating` and added it to the `SimpleProductView`. Now lets implement that field using the new Ratings API.
+
+```js
+module.exports = {
+  resolvers: {
+    SimpleProductView: {
+      rating: {
+        selectionSet: "{sku}",
+        resolve: (root, args, context, info) => {
+          return context.Ratings.Query.ratings({
+            root,
+            args,
+            context,
+            info,
+            selectionSet: "{average, total}",
+          })
+            .then((response) => {
+              context.logger.log("rating", response);
+              return response;
+            })
+            .catch(() => {
+              return null;
+            });
+        },
+      },
+    },
+  },
+};
+```
+
+Finally, lets deploy the mesh config to publish the new changes:
+
+```bash
+aio api-mesh update mesh_config.json
+```
 
 ## Storefront Extensibility (Phase 3)
 
