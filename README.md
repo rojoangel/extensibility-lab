@@ -150,19 +150,13 @@ The above config references a file called `sampleRatings.json`. Lets create this
 }
 ```
 
-At this point we have added the Ratings source to the mesh. Now lets create the `ratings` field on the `products` query. Create a new file called `additionalTypeDefs.graphql` with the following contents:
+At this point we have added the Ratings source to the mesh. Now lets create the `ratings` field on the `products` query. Add the following contents to the `mesh_config.json` file under `meshConfig`:
 
-```graphql
-type Rating {
-  average: Int
-  total: Int
-}
-extend type SimpleProductView {
-  rating: Rating
-}
+```json
+"additionalTypeDefs": "type Rating { average: Int, total: Int } extend type SimpleProductView { rating: Rating }",
 ```
 
-The above code defined a new type called `Rating` and added it to the `SimpleProductView`. Now lets implement that field using the new Ratings API.
+The above code defined a new type called `Rating` and added it to the `SimpleProductView` under a new field called `rating`. Now lets implement that field using the new Ratings API. Create a new file called `ratingsResolvers.js` and add the following contents:
 
 ```js
 module.exports = {
@@ -190,6 +184,12 @@ module.exports = {
     },
   },
 };
+```
+
+Add the resolver file reference to the `meshConfig`:
+
+```json
+"additionalResolvers": ["./ratingsResolvers.js"],
 ```
 
 Finally, lets deploy the mesh config to publish the new changes:
