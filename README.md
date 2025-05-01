@@ -238,13 +238,27 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
     Select the **Stage** workspace.
 
-    Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page.
+1. Three services need to be added to this workspace to prepare for securely receive events from Adobe Commerce.
+
+    Select **Add service** > **API**. Then select I/O Management API > Next > OAuth Server-to-Server > Save configured API
+
+    ![Alt text](docs/workspace-add-api.png "Add API to workspace")
+
+    Add the following API services, one at a time:
+    - Repeat **Add service** > **API** > I/O Events > Next > Save configured API
+    - Repeat **Add service** > **API** > Adobe I/O Events for Adobe Commerce > Next > Save configured API
+
+    You should now see the three new API’s at the workspace level.
+
+    ![Alt text](docs/workspace-with-services.png "Workspace with required services")
+
+1. Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page.
     
     ![Alt text](docs/download-workspace.png "Download all button")
     
     Save it as `workspace.json` in the `extensibility-lab/scripts/onboarding/config` directory.
 
-1.  Copy the `env.dist` file in `extensibility-lab` as `.env` 
+1.  Navigate back to the lab files. Copy the `env.dist` file in the `extensibility-lab` directory as `.env` 
     ```bash
     cp env.dist .env
     ```
@@ -300,7 +314,7 @@ To ensure flexibility for the onboarding scripts, the starter kit code provides 
 
   Defines the providers required during the integration. The "key" field will reference the providers in other configuration files. The rest of the fields are descriptive.
 
-  For this specific lab, we will focus on creating a Commerce provider for sending events to App Builder. Although not used for this specific lab, the starter kit also supports creation of backoffice providers for sending information from backoffice systems to Commerce.
+  For this specific lab, we will focus on creating a Commerce provider for sending events to App Builder. Although not used for this specific case, the starter kit also supports creation of backoffice providers for sending information from backoffice systems to Commerce.
 
 - `scripts/onboarding/config/events.json`
 
