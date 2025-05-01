@@ -115,6 +115,8 @@ aio commerce init
 
 ## Mesh Extensibility (Phase 2)
 
+### Stitch Ratings API with Adobe Commerce Backend
+
 Lets stitch Commerce backend and Ratings API using API Mesh. In this section we will create a new `ratings` field on the Products query and implement it using the Ratings API.
 
 Here is the sample Ratings API to use with the mesh: `https://ratings-api.apimesh-adobe-test.workers.dev`
@@ -150,11 +152,15 @@ The above config references a file called `sampleRatings.json`. Lets create this
 }
 ```
 
+### Define `rating` field on `products` query
+
 At this point we have added the Ratings source to the mesh. Now lets create the `ratings` field on the `products` query. Add the following contents to the `mesh_config.json` file under `meshConfig`:
 
 ```json
 "additionalTypeDefs": "type Rating { average: Int, total: Int } extend type SimpleProductView { rating: Rating }",
 ```
+
+### Implement `rating` field on `products` query
 
 The above code defined a new type called `Rating` and added it to the `SimpleProductView` under a new field called `rating`. Now lets implement that field using the new Ratings API. Create a new file called `ratingsResolvers.js` and add the following contents:
 
@@ -190,6 +196,8 @@ Add the resolver file reference to the `meshConfig`:
 ```json
 "additionalResolvers": ["./ratingsResolvers.js"],
 ```
+
+### Deploy mesh changes
 
 Finally, lets deploy the mesh config to publish the new changes:
 
