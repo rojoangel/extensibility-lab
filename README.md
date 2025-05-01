@@ -106,12 +106,10 @@ aio commerce init
 
 ![image](https://github.com/user-attachments/assets/83295575-7558-40f3-a278-aa2412096e29)
 
-## Storefront Extensibility (Phase 1)
+## Storefront Walkthrough
 
-1. Clone locally
-1. Open PDP block
-1. Add runtime fetch to mock service for ratings
-1. Render response
+1. Go to the preview link from the terminal. It should be something like this `https://main--{repo}--{owner}.aem.page/`
+2. Go to a sample PDP page `https://main--{repo}--{owner}.aem.page/products/adobe-for-all-tee/ADB256`
 
 ## Mesh Extensibility (Phase 2)
 
@@ -211,10 +209,83 @@ This operation typically takes 30 seconds to a minute. To check the status of th
 aio api-mesh status
 ```
 
-## Storefront Extensibility (Phase 3)
+## Storefront Extensibility
 
-1. Update Storefront to use build.mjs to modify pdp schema
-1. Use this data somehow, ie via slot context, and remove runtime fetch
+Lets update the storefront to display ratings in PDP pages.
+
+### Storefront Codespace Setup
+
+Go to the new storefront repo created by the terminal. Use the codespaces setup instructions from earlier to start a new codespace on the Storefront repo. Wait for it to complete, typically takes around 2 minutes.
+
+Once the codespace it ready, lets make code some chagnes to consume and display product ratings on the product pages.
+
+### Query Product Ratings
+
+Add the following block to the `overrideGQLOperations` array in `build.mjs` file:
+
+```js
+{
+  npm: '@dropins/storefront-pdp',
+  operations: [`
+    fragment PRODUCT_FRAGMENT on ProductView {
+      ... on SimpleProductView {
+          rating {
+            average
+            total
+          }
+      }
+    }
+  `],
+},
+```
+
+This piece of code will instruct the dropin to fetch additional data from the Mesh.
+
+### Consume Product Ratings
+
+Add the following field to the `ProductDetails` model in `scripts/initializers/pdp.js` on line 58:
+
+```js
+transformer: (data) => data,
+```
+
+This will instruct the model to pass the new data to the PDP block.
+
+### Display Product Ratings
+
+Finally, lets display the ratings. Go to `blocks/product-details/product-details.js` and add the following line in `Line 47` next to `product price div` to create a new `div` for product ratings:
+
+```html
+<div class="product-details__ratings"></div>
+```
+
+Next, on line 89, add the following code to select the new div and store the reference in a `const`
+
+```js
+const $ratings = fragment.querySelector('.product-details__ratings');
+```
+
+Lastly, use the stored reference to display product ratings. Add the following code on line 234:
+
+```js
+$ratings.append(`${product.rating.average} stars average (out of ${product.rating.total} ratings)`);
+```
+
+### Reload dropins
+
+Run the following command to re-install the update dropins:
+
+```bash
+yarn install:dropins
+```
+
+And finally, start the server to load the storefront:
+
+```bash
+yarn start
+```
+
+Go to any PDP page to verify the changes.
 
 # Commerce Partner Days - ACO Session
 
