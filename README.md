@@ -112,7 +112,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
 ### 1. Configure the Starter Kit
 
-1. Login to the Adobe Developer Console at https://developer.adobe.com/console/ and select the **Commerce Extensibility Lab** organization. 
+1. Login to the Adobe Developer Console at https://developer.adobe.com/console/ and select the **Adobe Commerce Labs** organization. 
     
     Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem, including App Builder. 
 
