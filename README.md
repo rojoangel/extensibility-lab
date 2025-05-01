@@ -243,7 +243,7 @@ This piece of code will instruct the dropin to fetch additional data from the Me
 
 ### Consume Product Ratings
 
-Add the following field to the `ProductDetails` model in `scripts/initializers/pdp.js`:
+Add the following field to the `ProductDetails` model in `scripts/initializers/pdp.js` on line 58:
 
 ```js
 transformer: (data) => data,
