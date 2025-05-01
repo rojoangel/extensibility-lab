@@ -209,7 +209,7 @@ This operation typically takes 30 seconds to a minute. To check the status of th
 aio api-mesh status
 ```
 
-## Storefront Extensibility (Phase 3)
+## Storefront Extensibility
 
 Lets update the storefront to display ratings in PDP pages.
 
