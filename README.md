@@ -93,7 +93,7 @@ aio commerce init
 3. Enter a name that will be used as the name the storefront repo. Make sure it isnt used in the past.
 4. Select the first template in the list `adobe-commerce/adobe-demo-store`
 5. Select the second option, which will allow us to select an assigned instance `Pick an available Adobe Commerce tenant`
-6. This will prompt us to select the Org. Select the `Adobe Commerce Labs` org and enter
+6. This will prompt us to select the Org. Select the `Adobe Commerce Labs` org and press enter
 7. From the list of instances, select the instance assigned to you. You can search for your instance by typing `Cloud Service <SEAT_NUMBER>`
 8. From the list of projects, select the project assigned to you. You can search for your project by typing `TBD`
 9. Select the Production workspace
@@ -341,6 +341,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
         ![Alt text](docs/oauth-credential.png "OAuth Server-to-Server Credential")
 
     - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. The endpoint should be in the following format: `https://na1-sandbox.api.commerce.adobe.com/<TENANT_ID>/`
+        - To find your assigned tenant ID, refer back to the final details returned after creating your storefront at the begining of the lab. The Commerce Admin URL that was returned is formatted as `https://na1-sandbox.admin.commerce.adobe.com/<TENANT_ID>`
 
     - Fill in the `IO_CONSUMER_ID`, `IO_PROJECT_ID`, and values `IO_WORKSPACE_ID` using the downloaded `workspace.json` file and the commented instructions in the `.env` file.
 
