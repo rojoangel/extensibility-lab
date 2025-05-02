@@ -301,7 +301,11 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
     
     **pd+sj+\<SEAT_NUMBER\>@adobeevents.com**
 
-1. Select the project assigned to your seat: 
+1. Click **Projects** in the Developer Console top menu.
+
+    ![Alt text](docs/developer-console-home.png "Developer console home")
+
+    Then select the project assigned to your seat: 
 
     **L442 Seat <SEAT_NUMBER>**
 
