@@ -93,7 +93,7 @@ aio commerce init
 3. Enter a name that will be used as the name the storefront repo. Make sure it isnt used in the past.
 4. Select the first template in the list `adobe-commerce/adobe-demo-store`
 5. Select the second option, which will allow us to select an assigned instance `Pick an available Adobe Commerce tenant`
-6. This will prompt us to select the Org. Select the following org `TBD` and enter
+6. This will prompt us to select the Org. Select the `Adobe Commerce Labs` org and enter
 7. From the list of instances, select the instance assigned to you. You can search for your instance by typing `Cloud Service <SEAT_NUMBER>`
 8. From the list of projects, select the project assigned to you. You can search for your project by typing `TBD`
 9. Select the Production workspace
@@ -379,7 +379,11 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
 The starter kit provides boilerplate code for synchronizing entities across systems and onboarding scripts to simplify setup. During installation, there are low/no manual activities required.
 
-To ensure flexibility for the onboarding scripts, the starter kit code provides a few different JSON configuration files to match your business requirements. All the files were pre-configured for this lab. The most important files are described below:
+To ensure flexibility for the onboarding scripts, the starter kit code provides a few different JSON configuration files to match your business requirements. 
+
+![Alt text](docs/starter-kit-config-files.png "Starter Kit configuration files")
+
+All the files were pre-configured for this lab. The most important files are described below:
 
 - `scripts/onboarding/config/providers.json`
 
@@ -426,7 +430,3 @@ In the storefront for your Commerce instance, place at least one order. After Co
 ![Alt text](docs/order-grid-ui.png "Application UI Order Grid")
 
 This demo App Builder app simply stores and displays received order information, but the action code for the app could also be modified to send information received from Commerce to a third-party back office system. Although not shown in this demonstration, the starter kit can additionally be used in setting up the synchronization of data from third-party back office systems to Commerce.
-
-# Commerce Partner Days - ACO Session
-
-TBD
