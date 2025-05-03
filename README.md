@@ -365,10 +365,9 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
     aio app use --merge
     ```
 
-1. Install and deploy the application:
+1. Deploy the application:
 
     ```bash
-    npm install
     aio app deploy
     ```
 
