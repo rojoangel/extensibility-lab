@@ -8,10 +8,13 @@ https://github.com/rojoangel/extensibility-lab
 
 ### Login
 
-1. Go to http://developer.adobe.com/console
+1. Go to the Adobe Developer console: http://developer.adobe.com/console
+        
+    The Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem.
+
 2. Login with the following credentials. You will find your assigned seat number on your desk.
 ```
-Email: pd-sj+<SEAT_NUMBER>@adobecreate.com
+Email: pd-sjc+<SEAT_NUMBER>@adobecreate.com
 Password: TBD
 ```
 ![image](https://github.com/user-attachments/assets/6f0bd9d3-2b78-46c3-ab7f-a15c1661a4fd)
@@ -23,16 +26,15 @@ Password: TBD
 ![image](https://github.com/user-attachments/assets/21cccf57-a0b7-4274-8d51-fd80cc2c767c)
 
 ### Setup
-
-1. Visit Developer Console and login using the following credentails. 
-2. Visit https://github.com/rojoangel/extensibility-lab
-3. Navigate to the top right of the page and click on the `Use this Template` button. Select the `Create a new repository` option to create a new repo with the template. <img width="1701" alt="image" src="https://github.com/user-attachments/assets/63ef2b17-bf03-4e3c-848f-6d990c492261" />
-4. This should launch the repo provisioning UI. Select your personal account as the owner and enter an appropriate name for the repo. Make the repo `Private` and click on `Create Repository` to create a repo from the template. <img width="881" alt="image" src="https://github.com/user-attachments/assets/aabc8b22-1ba3-4058-af6b-2f70ec505d0c" />
-5. Congratulations, you now have the tools to create and extend your own commerce store.
-6. Click on the `Code` icon and select the `Codespaces` tab. Click on the `+` icon to create a new personal codespace. <img width="1497" alt="image" src="https://github.com/user-attachments/assets/d060f11e-197f-44c6-9f68-2274c2ba22d6" />
-7. This will launch a new codespace on the repo. The initialization will take around 3-4 minutes. <img width="731" alt="image" src="https://github.com/user-attachments/assets/d4e18627-2fed-47b5-b8cc-ea3b0b2743f7" />
-8. Once done, you will be able to interact with the online IDE. <img width="2007" alt="image" src="https://github.com/user-attachments/assets/96c71fab-b179-442f-8378-9203d4facd83" />
-9. Navigate to the terminal and run the following command to clear the temporary github token:
+ 
+1. Visit https://github.com/rojoangel/extensibility-lab
+2. Navigate to the top right of the page and click on the `Use this Template` button. Select the `Create a new repository` option to create a new repo with the template. <img width="1701" alt="image" src="https://github.com/user-attachments/assets/63ef2b17-bf03-4e3c-848f-6d990c492261" />
+3. This should launch the repo provisioning UI. Select your personal account as the owner and enter an appropriate name for the repo. Make the repo `Private` and click on `Create Repository` to create a repo from the template. <img width="881" alt="image" src="https://github.com/user-attachments/assets/aabc8b22-1ba3-4058-af6b-2f70ec505d0c" />
+4. Congratulations, you now have the tools to create and extend your own commerce store.
+5. Click on the `Code` icon and select the `Codespaces` tab. Click on the `+` icon to create a new personal codespace. <img width="1497" alt="image" src="https://github.com/user-attachments/assets/d060f11e-197f-44c6-9f68-2274c2ba22d6" />
+6. This will launch a new codespace on the repo. The initialization will take around 3-4 minutes. <img width="731" alt="image" src="https://github.com/user-attachments/assets/d4e18627-2fed-47b5-b8cc-ea3b0b2743f7" />
+7. Once done, you will be able to interact with the online IDE. <img width="2007" alt="image" src="https://github.com/user-attachments/assets/96c71fab-b179-442f-8378-9203d4facd83" />
+8. Navigate to the terminal and run the following command to clear the temporary github token:
 ```bash
 unset GITHUB_TOKEN
 ```
@@ -93,8 +95,9 @@ aio commerce init
 3. Enter a name that will be used as the name the storefront repo. Make sure it isnt used in the past.
 4. Select the first template in the list `adobe-commerce/adobe-demo-store`
 5. Select the second option, which will allow us to select an assigned instance `Pick an available Adobe Commerce tenant`
-6. This will prompt us to select the Org. Select the following org `TBD` and enter
+6. This will prompt us to select the Org. Select the `Adobe Commerce Labs` org and press enter
 7. From the list of instances, select the instance assigned to you. You can search for your instance by typing `Cloud Service <SEAT_NUMBER>`
+    - The instance will be followed by a URL formatted as `https://na1-sandbox.admin.commerce.adobe.com/<TENANT_ID>`. Record the tenant ID for later use in the lab.
 8. From the list of projects, select the project assigned to you. You can search for your project by typing `TBD`
 9. Select the Production workspace
 10. This will connect the selected instance through an API Mesh on the selected Project and Workspace
@@ -287,6 +290,144 @@ yarn start
 
 Go to any PDP page to verify the changes.
 
-# Commerce Partner Days - ACO Session
+## Adobe Commerce Integration Starter Kit (Phase 4)
 
-TBD
+The purpose of this exercise is to demonstrate sending events from Commerce to Adobe Developer App Builder. You will use a simplified version of the Adobe Commerce Integration Starter Kit to configure Commerce and an App Builder project, allowing for the sending of events about saved orders.
+
+### 1. Configure the Starter Kit
+
+1. Navigate back to the Adobe Developer Console at https://developer.adobe.com/console/. If prompted, login and select the **Adobe Commerce Labs** organization. 
+    
+
+1. Click **Projects** in the Developer Console top menu.
+
+    ![Alt text](docs/developer-console-home.png "Developer console home")
+
+    Then select the project assigned to your seat: 
+
+    **L442 Seat <SEAT_NUMBER>**
+
+    *Tip: Use search to find your project*
+
+    Select the **Stage** workspace.
+
+1. Three services need to be added to this workspace to prepare for securely receive events from Adobe Commerce.
+
+    Select **Add service** > **API**. Then select I/O Management API > Next > OAuth Server-to-Server > Save configured API
+
+    ![Alt text](docs/workspace-add-api.png "Add API to workspace")
+
+    Add the following API services, one at a time:
+    - Repeat **Add service** > **API** > I/O Events > Next > Save configured API
+    - Repeat **Add service** > **API** > Adobe I/O Events for Adobe Commerce > Next > Save configured API
+
+    You should now see the three new API’s at the workspace level.
+
+    ![Alt text](docs/workspace-with-services.png "Workspace with required services")
+
+1. Download the workspace JSON configuration file by clicking on the **Download all** button on the upper right corner of the page.
+    
+    ![Alt text](docs/download-workspace.png "Download all button")
+    
+    Save it as `workspace.json` in the `extensibility-lab/scripts/onboarding/config` directory.
+
+1.  Navigate back to the lab files. Copy the `env.dist` file in the `extensibility-lab` directory as `.env` 
+    ```bash
+    cp env.dist .env
+    ```
+
+    Then configure the `.env` file with all the information required:
+
+    - To find the values for the OAuth config variables, click **OAuth Server-to-Server** in the Developer Console Workspace overview page for the Stage workspace.
+
+        ![Alt text](docs/oauth-credential.png "OAuth Server-to-Server Credential")
+
+    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. The endpoint should be in the following format: `https://na1-sandbox.api.commerce.adobe.com/<TENANT_ID>/`. Use the tenant ID you recorded while creating your Commerce storefront.
+
+    - Fill in the `IO_CONSUMER_ID`, `IO_PROJECT_ID`, and values `IO_WORKSPACE_ID` using the downloaded `workspace.json` file and the commented instructions in the `.env` file.
+
+1.	Link the project in the current directory to the project in the Adobe Developer Console by running the following commands in the terminal:
+
+    ```bash
+    # configure Adobe I/O CLI to use the Adobe Commerce Labs organization
+    aio console org select
+
+    # configure Adobe I/O CLI to use the project assigned to your seat
+    aio console project select
+
+    # configure Adobe I/O CLI to use the Stage workspace
+    aio console workspace select
+
+    # configure Adobe I/O CLI to use the previous selections for the current project
+    aio app use --merge
+    ```
+
+1. Deploy the application:
+
+    ```bash
+    aio app deploy
+    ```
+
+    Take note of the link to the deployed application in the Experience Cloud shell. This will be used later in the lab.
+
+    ![Alt text](docs/deployed-app-url.png "Application's Experience Cloud shell URL")
+
+    After running the command and clicking the **Runtime** tab in the Developer Console for your Stage workspace, runtime actions are visible.
+
+    ![Alt text](docs/dev-console-actions.png "Runtime actions in the Developer Console")
+
+### 2. Onboarding
+
+The starter kit provides boilerplate code for synchronizing entities across systems and onboarding scripts to simplify setup. During installation, there are low/no manual activities required.
+
+To ensure flexibility for the onboarding scripts, the starter kit code provides a few different JSON configuration files to match your business requirements. 
+
+![Alt text](docs/starter-kit-config-files.png "Starter Kit configuration files")
+
+All the files were pre-configured for this lab. The most important files are described below:
+
+- `scripts/onboarding/config/providers.json`
+
+  Defines the providers required during the integration. The "key" field will reference the providers in other configuration files. The rest of the fields are descriptive.
+
+  For this specific lab, we will focus on creating a Commerce provider for sending events to App Builder. Although not used for this specific case, the starter kit also supports creation of backoffice providers for sending information from backoffice systems to Commerce.
+
+- `scripts/onboarding/config/events.json`
+
+  Defines all the meaningful events that the integration needs to care about. For this lab, we'll focus on the `com.adobe.commerce.observer.sales._order_save_commit_after` event listed at the beginning of this file.
+  
+  If more events were required, we would specify them in this file. Although not used for this lab, the full starter kit also provides support for product, customer, and stock events.
+
+- `scripts/onboarding/config/starter-kit-registrations.json`
+
+  Defines the required event registrations that will be created in App Builder. For this lab, the file has been configured so that only a registration for order events from Commerce will be created. When the registration is created, order save Commerce events will trigger runtime action code that we've added in the `actions/order/commerce` directory to save order data within the App Builder app.
+
+- `scripts/commerce-event-subscribe/config/commerce-event-subscribe.json`
+
+  Defines the event names and fields that must be subscribed to in Adobe Commerce. Information for the `com.adobe.commerce.observer.sales._order_save_commit_after` that will be used in this lab is provided in this file.
+
+Now it's time to realize the onboarding. Go to your terminal and run the following commands:
+```bash
+npm run onboard
+```
+
+After successfully running this command, an event registration within your Stage workspace will be visible in the Developer Console.
+
+![Alt text](docs/workspace-overview-registration.png "Workspace overview with event registration")
+
+![Alt text](docs/registration-details.png "Event registration details")
+
+Then, to automatically subscribe to the order save Commerce event, go to your terminal and run
+```bash
+npm run commerce-event-subscribe
+```
+
+### 3. Send information from Adobe Commerce to App Builder
+
+Navigate to the link for the deployed application in the Experience Cloud shell that was included in the console output after running the `aio app deploy` command. The application contains a single page UI with a panel labeled **Latest Orders Received**. The panel is initially empty, but a grid with information about saved orders will appear after Commerce order save events are received and saved by the App Builder app's runtime action. The grid refreshes at regular intervals, allowing for the display of new order information.
+
+In the storefront for your Commerce instance, place at least one order. After Commerce order save events are received in App Builder, the panel in the app's UI will look similar to the following:
+
+![Alt text](docs/order-grid-ui.png "Application UI Order Grid")
+
+This demo App Builder app simply stores and displays received order information, but the action code for the app could also be modified to send information received from Commerce to a third-party back office system. Although not shown in this demonstration, the starter kit can additionally be used in setting up the synchronization of data from third-party back office systems to Commerce.

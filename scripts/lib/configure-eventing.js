@@ -24,10 +24,7 @@ async function main (providerId, instanceId, workspaceConfiguration, environment
   try {
     await updateConfiguration(
       environment.COMMERCE_BASE_URL,
-      environment.COMMERCE_CONSUMER_KEY,
-      environment.COMMERCE_CONSUMER_SECRET,
-      environment.COMMERCE_ACCESS_TOKEN,
-      environment.COMMERCE_ACCESS_TOKEN_SECRET,
+      environment,
       {
         config: {
           enabled: true,
@@ -44,6 +41,7 @@ async function main (providerId, instanceId, workspaceConfiguration, environment
       success: true
     }
   } catch (error) {
+    console.log(error)
     const errorMessage = `Unable to complete the process of commerce configuration: ${error.message}`
     console.log(errorMessage)
     return {

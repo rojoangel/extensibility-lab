@@ -23,10 +23,7 @@ describe('Given order external shipment created validator', () => {
       [{
         data: {
           orderId: 6,
-          items: [{ orderItemId: 7, qty: 1 }],
-          tracks: [{ trackNumber: 'Custom Value', title: 'Custom Title', carrierCode: 'custom' }],
-          comment: { comment: 'Order Shipped from API', visibleOnFront: true },
-          stockSourceCode: 'default'
+          trackNumber: 'TRACK#234'
         }
       }]
     ])('Then for %o,  returns successful response', (params) => {
@@ -36,14 +33,11 @@ describe('Given order external shipment created validator', () => {
   })
   describe('When data to validate is not valid', () => {
     it.each([
-      [{ data: { orderId: 7 } }],
+      [{ data: { orderId: 6 } }],
       [{
         data: {
           orderId: '6',
-          items: [{ orderItemId: '7', qty: '1' }],
-          tracks: [{ trackNumber: 'Custom Value', title: 'Custom Title', carrierCode: 'custom' }],
-          comments: [{ notifyCustomer: 0, comment: 'Order Shipped from API', visibleOnFront: 1 }],
-          stockSourceCode: 'default'
+          trackNumber: 2
         }
       }] // wrong type property
     ])('Then for %o,  returns error response', (params) => {

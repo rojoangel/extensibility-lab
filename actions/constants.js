@@ -16,9 +16,13 @@ const HTTP_UNAUTHORIZED = 401
 const HTTP_NOT_FOUND = 404
 const HTTP_INTERNAL_ERROR = 500
 
-const BACKOFFICE_PROVIDER_KEY = 'backoffice'
-
 const PUBLISH_EVENT_SUCCESS = 'OK'
+
+const BACKOFFICE_PROVIDER_KEY = 'backoffice'
+const SHIPMENT_CREATED_EVENT = 'be-observer.sales_order_shipment_create'
+
+const ORDER_KEY_PREFIX = 'order-'
+const STOCK_ITEM_QTY_KEY = 'stockItemQty'
 
 module.exports = {
   HTTP_OK,
@@ -27,5 +31,8 @@ module.exports = {
   HTTP_NOT_FOUND,
   HTTP_INTERNAL_ERROR,
   BACKOFFICE_PROVIDER_KEY,
-  PUBLISH_EVENT_SUCCESS
+  PUBLISH_EVENT_SUCCESS,
+  SHIPMENT_CREATED_EVENT,
+  ORDER_KEY_PREFIX,
+  STOCK_ITEM_QTY_KEY
 }

@@ -1,9 +1,9 @@
-check-stock:
-  function: ./check-stock/index.js
+check-order:
+  function: ./check-order/index.js
   web: 'yes'
   runtime: nodejs:20
   inputs:
     LOG_LEVEL: debug
   annotations:
-    require-adobe-auth: true
+    require-adobe-auth: false
     final: true

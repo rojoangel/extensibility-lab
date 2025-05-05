@@ -26,7 +26,7 @@ describe('Given order external consumer', () => {
     it.each([
       {},
       { data: {} },
-      { type: 'be-observer.sales_order_status_update' }
+      { type: 'be-observer.sales_order_status_create' }
     ])('Then for parameter %p returns error message', async (params) => {
       const INVALID_REQUEST_PARAMS_RESPONSE = {
         error: {
@@ -56,7 +56,7 @@ describe('Given order external consumer', () => {
   })
   describe('When order event received is valid', () => {
     it.each([
-      ['updated', 'be-observer.sales_order_status_update', 'order-backoffice/updated', { one: 'one', two: 'two' }]
+      ['updated', 'be-observer.sales_order_shipment_create', 'order-backoffice/shipment-created', { one: 'one', two: 'two' }]
     ]
     )('Then returns success response for %p action',
       async (name, type, action, data) => {
@@ -77,7 +77,7 @@ describe('Given order external consumer', () => {
           }
         }
       }
-      const type = 'be-observer.sales_order_status_update'
+      const type = 'be-observer.sales_order_shipment_create'
       const params = { type, data: {} }
       Openwhisk.prototype.invokeAction = jest.fn().mockRejectedValue(new Error(ERROR_MESSAGE))
       expect(await consumer.main(params)).toMatchObject(INTERNAL_SERVER_ERROR_RESPONSE)
@@ -90,7 +90,7 @@ describe('Given order external consumer', () => {
       [HTTP_INTERNAL_ERROR, { success: false, error: 'Internal error' }]
     ]
     )('Then returns error response with the status code %p', async (statusCode, response) => {
-      const type = 'be-observer.sales_order_status_update'
+      const type = 'be-observer.sales_order_shipment_create'
       const ACTION_RESPONSE = {
         response: {
           result: {
@@ -114,13 +114,13 @@ describe('Given order external consumer', () => {
   })
   describe('When downstream returns a success response', () => {
     test('Then returns success response', async () => {
-      const type = 'be-observer.sales_order_status_update'
+      const type = 'be-observer.sales_order_shipment_create'
       const ACTION_RESPONSE = {
         response: {
           result: {
             body: {
               success: true,
-              message: 'Order updated successfully'
+              message: 'Order created successfully'
             },
             statusCode: HTTP_OK
           }
@@ -132,7 +132,7 @@ describe('Given order external consumer', () => {
           type,
           response: {
             success: true,
-            message: 'Order updated successfully'
+            message: 'Order created successfully'
           }
         }
       }

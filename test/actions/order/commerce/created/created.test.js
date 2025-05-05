@@ -11,8 +11,8 @@ governing permissions and limitations under the License.
 */
 
 const action = require('../../../../../actions/order/commerce/created')
-jest.mock('../../../../../actions/order/commerce/created/validator')
-const { validateData } = require('../../../../../actions/order/commerce/created/validator')
+jest.mock('../../../../../actions/utils')
+const { checkMissingRequestInputs } = require('../../../../../actions/utils')
 
 afterEach(() => {
   jest.clearAllMocks()
@@ -25,17 +25,14 @@ describe('Given order commerce created action', () => {
       expect(action.main).toBeInstanceOf(Function)
     })
   })
-  describe('When order event data is invalid', () => {
+  describe('When order event is missing required inputs', () => {
     test('Then returns action error response', async () => {
       const params = {
         data: {}
       }
 
-      const ERROR_MESSAGE = 'Invalid data'
-      validateData.mockReturnValue({
-        success: false,
-        message: ERROR_MESSAGE
-      })
+      const errorMessage = 'Missing required data'
+      checkMissingRequestInputs.mockReturnValue(errorMessage)
 
       const response = await action.main(params)
 
@@ -43,10 +40,9 @@ describe('Given order commerce created action', () => {
         statusCode: 400,
         body: {
           success: false,
-          error: ERROR_MESSAGE
+          error: errorMessage
         }
       })
     })
   })
-  // @TODO Here you can add unit tests to cover the cases implemented in the order created runtime action
 })

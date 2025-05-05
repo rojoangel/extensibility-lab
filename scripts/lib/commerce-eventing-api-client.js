@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { getCommerceOauthClient } = require('../../actions/oauth1a')
+const { getClient } = require('../../actions/oauth1a')
 const { Core } = require('@adobe/aio-sdk')
 const logger = Core.Logger('commerce-eventing-api-client', { level: 'info' })
 
@@ -19,23 +19,13 @@ const logger = Core.Logger('commerce-eventing-api-client', { level: 'info' })
  *
  * @returns {object} - API response object
  * @param {string} baseUrl - Adobe commerce rest api base url
- * @param {string} consumerKey - Adobe commerce integration consumer key
- * @param {string} consumerSecret - Adobe commerce integration consumer secret
- * @param {string} accessToken - Adobe commerce integration access token
- * @param {string} accessTokenSecret - Adobe commerce integration access token secret
+ * @param {object} params - Environment params from the IO Runtime request
  * @param {object} data - Adobe commerce api payload
  */
-async function updateConfiguration (baseUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, data) {
-  const client = getCommerceOauthClient(
-    {
-      url: baseUrl,
-      consumerKey,
-      consumerSecret,
-      accessToken,
-      accessTokenSecret
-    },
-    logger
-  )
+async function updateConfiguration (baseUrl, params, data) {
+  const client = createClient(baseUrl, params)
+
+  console.log('data', data)
 
   return await client.put(
     'eventing/updateConfiguration',
@@ -50,29 +40,37 @@ async function updateConfiguration (baseUrl, consumerKey, consumerSecret, access
  *
  * @returns {object} - API response object
  * @param {string} baseUrl - Adobe commerce rest api base url
- * @param {string} consumerKey - Adobe commerce integration consumer key
- * @param {string} consumerSecret - Adobe commerce integration consumer secret
- * @param {string} accessToken - Adobe commerce integration access token
- * @param {string} accessTokenSecret - Adobe commerce integration access token secret
+ * @param {object} params - Environment params from the IO Runtime request
  * @param {object} data - Adobe commerce api payload
  */
-async function eventSubscribe (baseUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, data) {
-  const client = getCommerceOauthClient(
-    {
-      url: baseUrl,
-      consumerKey,
-      consumerSecret,
-      accessToken,
-      accessTokenSecret
-    },
-    logger
-  )
+async function eventSubscribe (baseUrl, params, data) {
+  const client = createClient(baseUrl, params)
 
   return await client.post(
     'eventing/eventSubscribe',
     JSON.stringify(data),
     '',
     { 'Content-Type': 'application/json' }
+  )
+}
+
+/**
+ * Helper function to create a client for Adobe commerce rest API
+ *
+ * @param {string} baseUrl - Adobe commerce rest api base url
+ * @param {object} params - Environment params from the IO Runtime request
+ * @returns {object} - API client object
+ */
+function createClient (baseUrl, params) {
+  return getClient(
+    {
+      url: baseUrl,
+      params: {
+        ...params,
+        OAUTH_SCOPES: params.OAUTH_SCOPES
+      }
+    },
+    logger
   )
 }
 
