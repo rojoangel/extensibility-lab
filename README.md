@@ -11,7 +11,7 @@ https://github.com/rojoangel/extensibility-lab
 1. Go to http://developer.adobe.com/console
 2. Login with the following credentials. You will find your assigned seat number on your desk.
 ```
-Email: pd-sj+<SEAT_NUMBER>@adobecreate.com
+Email: pd-sjc+<SEAT_NUMBER>@adobecreate.com
 Password: TBD
 ```
 ![image](https://github.com/user-attachments/assets/6f0bd9d3-2b78-46c3-ab7f-a15c1661a4fd)
