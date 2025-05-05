@@ -10,7 +10,7 @@ https://github.com/rojoangel/extensibility-lab
 
 1. Go to the Adobe Developer console: http://developer.adobe.com/console
         
-    The Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem, including App Builder.
+    The Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem.
 
 2. Login with the following credentials. You will find your assigned seat number on your desk.
 ```
