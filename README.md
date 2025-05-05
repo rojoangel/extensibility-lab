@@ -8,7 +8,10 @@ https://github.com/rojoangel/extensibility-lab
 
 ### Login
 
-1. Go to http://developer.adobe.com/console
+1. Go to the Adobe Developer console: http://developer.adobe.com/console
+        
+    The Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem, including App Builder.
+
 2. Login with the following credentials. You will find your assigned seat number on your desk.
 ```
 Email: pd-sjc+<SEAT_NUMBER>@adobecreate.com
@@ -94,6 +97,7 @@ aio commerce init
 5. Select the second option, which will allow us to select an assigned instance `Pick an available Adobe Commerce tenant`
 6. This will prompt us to select the Org. Select the `Adobe Commerce Labs` org and press enter
 7. From the list of instances, select the instance assigned to you. You can search for your instance by typing `Cloud Service <SEAT_NUMBER>`
+    - The instance will be followed by a URL formatted as `https://na1-sandbox.admin.commerce.adobe.com/<TENANT_ID>`. Record the tenant ID for later use in the lab.
 8. From the list of projects, select the project assigned to you. You can search for your project by typing `TBD`
 9. Select the Production workspace
 10. This will connect the selected instance through an API Mesh on the selected Project and Workspace
@@ -292,13 +296,8 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
 ### 1. Configure the Starter Kit
 
-1. Login to the Adobe Developer Console at https://developer.adobe.com/console/ and select the **Adobe Commerce Labs** organization. 
+1. Navigate back to the Adobe Developer Console at https://developer.adobe.com/console/. If prompted, login and select the **Adobe Commerce Labs** organization. 
     
-    Developer Console is the gateway to access all the services and tooling available as part of the Adobe Developer Ecosystem, including App Builder. 
-
-    Use the username format:
-    
-    **pd+sj+\<SEAT_NUMBER\>@adobeevents.com**
 
 1. Click **Projects** in the Developer Console top menu.
 
@@ -343,8 +342,7 @@ The purpose of this exercise is to demonstrate sending events from Commerce to A
 
         ![Alt text](docs/oauth-credential.png "OAuth Server-to-Server Credential")
 
-    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. The endpoint should be in the following format: `https://na1-sandbox.api.commerce.adobe.com/<TENANT_ID>/`
-        - To find your assigned tenant ID, refer back to the final details returned after creating your storefront at the begining of the lab. The Commerce Admin URL that was returned is formatted as `https://na1-sandbox.admin.commerce.adobe.com/<TENANT_ID>`
+    - Set the REST endpoint for your ACCS instance as the value for the `COMMERCE_BASE_URL`. The endpoint should be in the following format: `https://na1-sandbox.api.commerce.adobe.com/<TENANT_ID>/`. Use the tenant ID you recorded while creating your Commerce storefront.
 
     - Fill in the `IO_CONSUMER_ID`, `IO_PROJECT_ID`, and values `IO_WORKSPACE_ID` using the downloaded `workspace.json` file and the commented instructions in the `.env` file.
 
